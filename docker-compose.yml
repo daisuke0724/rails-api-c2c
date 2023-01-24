@@ -1,0 +1,45 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    volumes:
+      - type: bind
+        source: ./src
+        target: /myapp
+#      - type: volume
+#        source: public-data
+#        target: /myapp/public
+#      - type: volume
+#        source: tmp-data
+#        target: /myapp/tmp
+#      - type: volume
+#        source: log-data
+#        target: /myapp/log
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+    depends_on:
+        - db
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb"
+  db:
+    build:
+      context: .
+      dockerfile: ./docker/db/Dockerfile
+    volumes:
+      - type: volume
+        source: db-data
+        target: /var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - target: 5432
+        published: 5432
+        protocol: tcp
+volumes:
+  public-data:
+  tmp-data:
+  log-data:
+  db-data:
