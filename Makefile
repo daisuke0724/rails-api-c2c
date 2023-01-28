@@ -9,3 +9,7 @@ init:
 	docker compose exec app rake db:create
 migrate:
 	docker compose exec app rake db:migrate
+console:
+	docker compose exec app rails console
+test:
+	docker compose exec app rspec spec/models -f documentation
