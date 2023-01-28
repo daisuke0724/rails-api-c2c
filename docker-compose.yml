@@ -6,7 +6,7 @@ services:
       dockerfile: ./docker/app/Dockerfile
     volumes:
       - type: bind
-        source: ./src
+        source: .
         target: /myapp
 #      - type: volume
 #        source: public-data
