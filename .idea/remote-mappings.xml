@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="ruby@docker-compose://[/Users/daisuke/RubymineProjects/rails-api-c2c/docker-compose.yml]:app//usr/local/bin/ruby">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$" remote-root="/myapp" />
+            </list>
+          </settings>
+        </remote-mappings>
+      </list>
+    </list>
+  </component>
+</project>
