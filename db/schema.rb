@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_28_075653) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_28_075652) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,9 +18,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_075653) do
     t.bigint "user_id", null: false
     t.string "name"
     t.decimal "point"
+    t.bigint "user_purchase_items_id"
+    t.integer "lock_version", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_list_items_on_user_id"
+    t.index ["user_purchase_items_id"], name: "index_user_list_items_on_user_purchase_items_id"
   end
 
   create_table "user_points", force: :cascade do |t|
@@ -33,12 +36,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_075653) do
 
   create_table "user_purchase_items", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "user_list_item_id", null: false
     t.decimal "point"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_purchase_items_on_user_id"
-    t.index ["user_list_item_id"], name: "index_user_purchase_items_on_user_list_item_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,8 +51,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_075653) do
     t.index ["email"], name: "index_users_on_email"
   end
 
+  add_foreign_key "user_list_items", "user_purchase_items", column: "user_purchase_items_id"
   add_foreign_key "user_list_items", "users"
   add_foreign_key "user_points", "users"
-  add_foreign_key "user_purchase_items", "user_list_items"
   add_foreign_key "user_purchase_items", "users"
 end
