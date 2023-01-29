@@ -13,3 +13,5 @@ console:
 	docker compose exec app rails console
 test:
 	docker compose exec app rspec spec/models -f documentation
+routes:
+	docker compose exec app rake routes

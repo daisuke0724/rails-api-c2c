@@ -41,6 +41,8 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "faker"
+  gem 'debase', '>= 0.2.5.beta2'
+  gem 'ruby-debug-ide'
 end
 
 group :development do
