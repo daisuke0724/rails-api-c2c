@@ -20,6 +20,7 @@ class Api::V2::UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
+    user_point = nil
 
     user.transaction do
       user.save!
@@ -27,9 +28,20 @@ class Api::V2::UsersController < ApplicationController
     end
 
     data = {
-      id: user.id,
-      email: user.email,
-      name: user.name
+      user:{
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        created_at: user.created_at,
+        updated_at: user.updated_at
+      },
+      user_point: {
+        id: user_point.id,
+        user_id: user_point.user_id,
+        point: user_point.point,
+        created_at: user_point.created_at,
+        updated_at: user_point.updated_at
+      }
     }
 
     render json: { status: 'Success', data: data }

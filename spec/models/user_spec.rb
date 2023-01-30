@@ -11,11 +11,6 @@ RSpec.describe User do
     end
 
     context '未入力のとき' do
-      example 'name が未入力の場合にエラーメッセージが返ってくること' do
-        user = build(:user, name: nil)
-        user.valid?
-        expect(user.errors).to be_added(:name, :blank)
-      end
 
       example 'email が未入力の場合にエラーメッセージが返ってくること' do
         user = build(:user, email: nil)

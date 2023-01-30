@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :user_list_item do
-    user { nil }
-    name { "MyString" }
-    point { 1 }
+    name { "Item1" }
+    point { 3000 }
+
+    association :user
   end
 end
