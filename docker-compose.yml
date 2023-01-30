@@ -17,13 +17,10 @@ services:
 #      - type: volume
 #        source: log-data
 #        target: /myapp/log
-#    ports:
-#      - target: 3000
-#        published: 3000
-#        protocol: tcp
-#      - target: 1234
-#        published: 1234
-#        protocol: tcp
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
     depends_on:
         - db
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb"

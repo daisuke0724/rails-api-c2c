@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user_point do
-    user { nil }
-    point { 1 }
+    point { 10000 }
+    association :user
   end
 end

@@ -34,7 +34,6 @@ class Api::V1::UserPurchaseItemsController < ApplicationController
       # 購入データの登録
       user_purchase_item = UserPurchaseItem.new(user_id: buy_user_id, point: point)
       user_purchase_item.save!
-      UserPurchaseItem.create!(user_id: buy_user_id, point: point)
       # ポイント履歴　ポイント使用
       UserPoint.create!(user_id: buy_user_id, point: -point)
       # ポイント履歴　ポイント付与
@@ -48,7 +47,7 @@ class Api::V1::UserPurchaseItemsController < ApplicationController
       use_point: user_list_item.point
     }
 
-    render json: { status: 'Success', message: 'Purchased the item' data: data }
+    render json: { status: 'Success', message: 'Purchased the item', data: data }
 
   rescue => e
     render json: { status: 'Error', message: 'Please buy again later' }
